@@ -28,15 +28,16 @@
         .show-btn {
             display: inline;
         }
-        body{
-            background-image: url(pngtree-wood-grain-background-image_417585.jpg);
+
+        body {
+            background-image: url(./image/pngtree-wood-grain-background-image_417585.jpg);
         }
-        .box{
-            border : 10px solid transparent ;
-            border-image: url(./Basketball.png) 10% round;
+
+        .box {
+            border: 10px solid transparent;
+            border-image: url(./image/Basketball.png) 10% round;
             border-radius: 30px;
         }
-        
     </style>
 
 </head>
@@ -49,27 +50,31 @@
                 <span>時間<i class="fa-solid fa-clock"></i></span><br>
                 <span id="time" class="display-5 text-center text-primary">60</span>
             </div>
-            <div class="col-8 text-center">投籃機<hr></div>
+            <div class="col-8 text-center">投籃機
+                <hr>
+            </div>
             <div class="col-2">
                 <span>最高分數：<br>
-                <span id="max"></span>
+                    <span id="max"></span>
                 </span>
             </div>
         </div>
     </div>
-    
+
     <div class="container mt-3 main">
         <div class="row">
             <div class="col-2 text-center">
-                
+
             </div>
             <div class="col-8 text-center box" style="background-color: white;height: 50vh;">
                 <span>目前分數</span><br>
                 <span id="score">0</span>
-                <div style="display:flex;"><div id="forimg"></div></div>
+                <div style="display:flex;">
+                    <div id="forimg"></div>
+                </div>
             </div>
             <div class="col-2 text-center">
-                
+
             </div>
         </div>
     </div>
@@ -98,94 +103,186 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         // 原生js
-        const startBtn = document.getElementById("startbtn");
-        const shotBtn = document.getElementById("shotbtn");
-        const stopBtn = document.getElementById("stopbtn");
-        const ScoreBar = document.getElementById("score")
-        const timeSpan = document.getElementById("time");
-        const maxScoreSpan = document.getElementById("max");
-        const ForImg = document.getElementById("forimg");
-        
+        // const startBtn = document.getElementById("startbtn");
+        // const shotBtn = document.getElementById("shotbtn");
+        // const stopBtn = document.getElementById("stopbtn");
+        // const ScoreBar = document.getElementById("score")
+        // const timeSpan = document.getElementById("time");
+        // const maxScoreSpan = document.getElementById("max");
+        // const ForImg = document.getElementById("forimg");
 
-        let score = 0;
-        let StartTime = 60;
-        let Bonustime = 30 ;
-        let maxScore = 0;
-        
+        // let score = 0;
+        // let StartTime = 60;
+        // let Bonustime = 30;
+        // let maxScore = 0;
+
         // localStorage.setItem('maxScore',123);
-        let getmaxScore = Number (localStorage.getItem('maxScore'));
-        if(getmaxScore){
-            maxScore = getmaxScore;
-        }
-        
-        let myInterval= null
-        
-        maxScoreSpan.innerHTML = maxScore ;
-        
-        shotBtn.setAttribute('class', 'btn btn-primary class-btn me-5 hide-btn');
-        
-        startBtn.addEventListener('click', function () {
-            console.log('ok')
-            this.setAttribute('class', 'btn btn-success class-btn me-5 hide-btn');
-            shotBtn.setAttribute('class', 'btn btn-primary class-btn me-5 show-btn');
+        // let getmaxScore = Number(localStorage.getItem('maxScore'));
+        // if (getmaxScore) {
+        //     maxScore = getmaxScore;
+        // }
 
-            myInterval = setInterval(()=>{
-                StartTime--;
-                timeSpan.innerHTML = StartTime
-                if(StartTime <= 30){
-                    timeSpan.setAttribute('class', 'display-5 text-center text-danger');
-                }
-                // 停止計時
-                if(StartTime < 1){
+        // maxScoreSpan.innerHTML = maxScore;
+
+        // shotBtn.setAttribute('class', 'btn btn-primary class-btn me-5 hide-btn');
+
+        // startBtn.addEventListener('click', function () {
+        //     console.log('ok')
+        //     this.setAttribute('class', 'btn btn-success class-btn me-5 hide-btn');
+        //     shotBtn.setAttribute('class', 'btn btn-primary class-btn me-5 show-btn');
+
+        //     myInterval = setInterval(() => {
+        //         StartTime--;
+        //         timeSpan.innerHTML = StartTime
+        //         if (StartTime <= 30) {
+        //             timeSpan.setAttribute('class', 'display-5 text-center text-danger');
+        //         }
+        //         // 停止計時
+        //         if (StartTime < 1) {
+        //             clearInterval(myInterval);
+        //         };
+
+        //     }, 1000);
+        // });
+        // shotBtn.addEventListener('click', function () {
+        //     // 當時間為0時 按鈕無作用
+        //     if (StartTime < 1) {
+        //         return false;
+        //     }
+        //     if (StartTime > Bonustime) {
+        //         score += 2;
+        //     } else {
+        //         score += 3;
+        //     }
+        //     ScoreBar.innerHTML = score;
+
+        //     if (score > maxScore) {
+        //         maxScore = score;
+        //         localStorage.setItem('maxScore', maxScore);
+        //         maxScoreSpan.innerHTML = maxScore;
+        //     }
+        //     if (score % 20 === 0 && score > 0) {
+        //         const img = document.createElement('img');
+        //         img.src = './image/mike.gif'; // 替換為你的圖片 URL
+        //         img.style.width = '150px'; // 設置圖片大小
+        //         img.style.margin = '4px';
+        //         ForImg.appendChild(img);
+
+        //         // 可選：限制圖片數量，避免過多
+        //         const images = ForImg.getElementsByTagName('img');
+        //         if (images.length > 4) {
+        //             ForImg.innerHTML = ''; // 移除最早的圖片
+        //         }
+        //     }
+        // });
+        // stopBtn.addEventListener('click', function () {
+        //     score = 0;
+        //     ScoreBar.innerHTML = score;
+        //     shotBtn.setAttribute('class', 'btn btn-primary class-btn me-5 hide-btn');
+        //     startBtn.setAttribute('class', 'btn btn-success class-btn me-5 show-btn');
+        //     clearInterval(myInterval);
+        //     StartTime = 60
+        //     timeSpan.innerHTML = StartTime;
+        //     timeSpan.setAttribute('class', 'display-5 text-center text-primary');
+        //     ForImg.innerHTML = '';
+        // });
+
+        // 改寫jquery
+        $(document).ready(function () {
+            const startBtn = $('#startbtn');
+            const shotBtn = $('#shotbtn');
+            const stopBtn = $('#stopbtn');
+            const ScoreBar = $('#score');
+            const timeSpan = $('#time');
+            const maxScoreSpan = $('#max');
+            const ForImg = $('#forimg');
+
+            let score = 0;
+            let StartTime = 60;
+            let Bonustime = 30;
+            let maxScore = 0;
+
+            // localStorage.setItem('maxScore',123);
+            let getmaxScore = Number(localStorage.getItem('maxScore'));
+            if (getmaxScore) {
+                maxScore = getmaxScore;
+            }
+
+            let myInterval = null
+
+            maxScoreSpan.html(maxScore);
+
+            shotBtn.attr('class', 'btn btn-primary class-btn me-5 hide-btn')
+
+            startBtn.click(function (e) {
+                e.preventDefault();
+                $(this).attr('class', 'btn btn-success class-btn me-5 hide-btn');
+                shotBtn.attr('class', 'btn btn-primary class-btn me-5 show-btn');
+
+                myInterval = setInterval(() => {
+                    StartTime--;
+                    $(timeSpan).html(StartTime);
+                    if (StartTime <= Bonustime) {
+                        timeSpan.attr('class', 'display-5 text-center text-danger');
+                    }
+                    // 停止計時
+                    if (StartTime < 1) {
                         clearInterval(myInterval);
                     };
-                
-            },1000);
-        });
-        shotBtn.addEventListener('click', function () {
-            // 當時間為0時 按鈕無作用
-            if(StartTime < 1){
-                return false;
-            }
-            if(StartTime>Bonustime){
-                score += 2;
-            }else{
-                score += 3;
-            }
-            ScoreBar.innerHTML = score;
 
-            if(score>maxScore){
-                maxScore = score;
-                localStorage.setItem('maxScore',maxScore);
-                maxScoreSpan.innerHTML= maxScore;
-            }
-            if (score % 20 === 0 && score > 0) {
-            const img = document.createElement('img');
-            img.src = './mike.gif'; // 替換為你的圖片 URL
-            img.style.width = '150px'; // 設置圖片大小
-            img.style.margin = '4px';
-            ForImg.appendChild(img);
+                }, 1000);
+            });
 
-            // 可選：限制圖片數量，避免過多
-            const images = ForImg.getElementsByTagName('img');
-            if (images.length > 4) {
-                ForImg.innerHTML = ''; // 移除最早的圖片
-            }
-        }
-        });
-        stopBtn.addEventListener('click', function () {
-            score = 0;
-            ScoreBar.innerHTML = score;
-            shotBtn.setAttribute('class', 'btn btn-primary class-btn me-5 hide-btn');
-            startBtn.setAttribute('class', 'btn btn-success class-btn me-5 show-btn');
-            clearInterval(myInterval);
-            StartTime = 60
-            timeSpan.innerHTML = StartTime ;
-            timeSpan.setAttribute('class','display-5 text-center text-primary');
-            ForImg.innerHTML = '';
-        });
+            shotBtn.click(function (e) {
+                e.preventDefault();
+                if (StartTime < 1) {
+                    return false;
+                }
+                if (StartTime > Bonustime) {
+                    score += 2;
+                } else {
+                    score += 3;
+                }
+                $(ScoreBar).html(score);
 
-        
+                if (score > maxScore) {
+                    maxScore = score;
+                    localStorage.setItem('maxScore', maxScore);
+                    $(maxScoreSpan).html(maxScore);
+                }
+
+                if (score % 20 === 0 && score > 0) {
+                    const $img = $('<img>', {
+                        src: './image/mike.gif',
+                        css: {
+                            width: '150px',
+                            margin: '4px'
+                        }
+                    });
+
+                    ForImg.append($img);
+
+                    // 可選：限制圖片數量，避免過多
+                    const images = $('#forimg img');
+                    if (images.length > 4) {
+                        ForImg.empty(); // 清空容器
+                    }
+                }
+            });
+
+            stopBtn.click(function (e) {
+                e.preventDefault();
+                score = 0;
+                $(ScoreBar).html(score);
+                shotBtn.attr('class', 'btn btn-primary class-btn me-5 hide-btn');
+                startBtn.attr('class', 'btn btn-success class-btn me-5 show-btn');
+                clearInterval(myInterval);
+                StartTime = 60
+                $(timeSpan).html(StartTime);
+                timeSpan.attr('class', 'display-5 text-center text-primary');
+                ForImg.empty();
+            });
+        })
     </script>
 </body>
 
